@@ -25,18 +25,17 @@
 //! ## Quick Start
 //!
 //! ```rust
-//! use serde_inventory_lib::prelude::*;
+//! use inventory_serde::prelude::*;
 //! use chrono::Utc;
 //! use uuid::Uuid;
 //!
 //! // Create a product using the builder pattern
-//! let product = ProductBuilder::new()
-//!     .name("Industrial Widget")
+//! let product = ProductBuilder::new("SKU-001", "Industrial Widget")
 //!     .description("High-quality widget for industrial applications")
 //!     .category("Manufacturing")
-//!     .unit_price(Money::new(rust_decimal::Decimal::new(2550, 2), Currency::USD))
-//!     .dimensions(45.0, 30.0, 15.0)
-//!     .weight_kg(2.5)
+//!     .unit_cost(rust_decimal::Decimal::new(2550, 2), Currency::USD)
+//!     .dimensions_cm(45.0, 30.0, 15.0)
+//!     .weight_grams(2500)
 //!     .build()?;
 //!
 //! // Serialize to different formats
