@@ -1,0 +1,11 @@
+/home/pratikacharya/Desktop/serde/target/debug/deps/url-8294bbcdd6ce4b1a.d: /home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/lib.rs /home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/host.rs /home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/origin.rs /home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/parser.rs /home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/path_segments.rs /home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/slicing.rs /home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/quirks.rs
+
+/home/pratikacharya/Desktop/serde/target/debug/deps/liburl-8294bbcdd6ce4b1a.rmeta: /home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/lib.rs /home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/host.rs /home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/origin.rs /home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/parser.rs /home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/path_segments.rs /home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/slicing.rs /home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/quirks.rs
+
+/home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/lib.rs:
+/home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/host.rs:
+/home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/origin.rs:
+/home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/parser.rs:
+/home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/path_segments.rs:
+/home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/slicing.rs:
+/home/pratikacharya/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/url-2.5.7/src/quirks.rs:

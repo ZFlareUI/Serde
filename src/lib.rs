@@ -1,8 +1,8 @@
-//! # Advanced Enterprise Inventory Management Library
+//! # Inventory Management Framework
 //!
-//! A comprehensive, production-ready Rust library for enterprise inventory management
-//! with advanced serde serialization capabilities, machine learning forecasting,
-//! multi-warehouse optimization, and real-time decision support.
+//! A modular, production-grade inventory management framework for Rust developers
+//! building logistics, e-commerce, or ERP systems. Features async operations,
+//! multiple database backends, REST/GraphQL APIs, and ML-based forecasting.
 //!
 //! ## Features
 //!
@@ -45,60 +45,83 @@
 //! # Ok::<(), Box<dyn std::error::Error>>(())
 //! ```
 
+// Core modules
 pub mod models;
-pub mod algorithms;
-pub mod builders;
-pub mod pipelines;
-pub mod serialization;
-pub mod errors;
-pub mod enterprise_models;
-pub mod analytics;
-pub mod realtime;
+pub mod repository;
 
-#[cfg(test)]
-pub mod tests;
+// Feature-gated modules
+#[cfg(feature = "services")]
+pub mod services;
 
-// Re-export all public items from modules
-// Note: Ambiguous glob re-exports are expected in comprehensive libraries
-#[allow(ambiguous_glob_reexports)]
-pub use models::*;
-#[allow(ambiguous_glob_reexports)]
-pub use algorithms::*;
-#[allow(ambiguous_glob_reexports)]
-pub use builders::*;
-#[allow(ambiguous_glob_reexports)]
-pub use pipelines::*;
-#[allow(ambiguous_glob_reexports)]
-pub use serialization::*;
-#[allow(ambiguous_glob_reexports)]
-pub use errors::*;
-#[allow(ambiguous_glob_reexports)]
-pub use enterprise_models::*;
-#[allow(ambiguous_glob_reexports)]
-pub use analytics::*;
-#[allow(ambiguous_glob_reexports)]
-pub use realtime::*;
+#[cfg(feature = "api")]
+pub mod api;
+
+#[cfg(feature = "config")]
+pub mod config;
+
+#[cfg(feature = "cli")]
+pub mod cli;
+
+#[cfg(feature = "utils")]
+pub mod utils;
+
+// Re-export common types for convenience
+pub use models::{
+    Product, ProductBuilder, ProductCategory, ProductStatus,
+    Warehouse, WarehouseBuilder, WarehouseType, WarehouseStatus,
+    StockTransaction, StockTransactionBuilder, TransactionType, TransactionStatus,
+};
+pub use models::supplier::{Supplier, SupplierBuilder, SupplierType, SupplierStatus};
+pub use models::order::{Order, OrderBuilder, OrderType, OrderStatus};
+
+pub use repository::{
+    Repository, SearchableRepository, RepositoryResult, RepositoryError,
+    ProductRepository, WarehouseRepository, SupplierRepository, 
+    OrderRepository, StockTransactionRepository,
+    memory::MemoryRepositoryFactory,
+};
+
+// Re-export external dependencies for convenience
+pub use chrono::{DateTime, Utc};
+pub use rust_decimal::Decimal;
+pub use serde::{Deserialize, Serialize};
+pub use uuid::Uuid;
+
+// Feature-specific re-exports
+#[cfg(feature = "tokio-runtime")]
+pub use tokio;
+
+#[cfg(feature = "sql")]
+pub use sqlx;
+
+#[cfg(feature = "mongodb")]
+pub use mongodb;
+
+#[cfg(feature = "api")]
+pub use axum;
+
+#[cfg(feature = "schema")]
+pub use schemars;
 
 /// Convenience module for common imports
 pub mod prelude {
-    // Re-export all public items from modules
-    // Note: Ambiguous glob re-exports are expected in comprehensive libraries
-    #[allow(ambiguous_glob_reexports)]
-    pub use crate::models::*;
-    #[allow(ambiguous_glob_reexports)]
-    pub use crate::algorithms::*;
-    #[allow(ambiguous_glob_reexports)]
-    pub use crate::builders::*;
-    #[allow(ambiguous_glob_reexports)]
-    pub use crate::pipelines::*;
-    #[allow(ambiguous_glob_reexports)]
-    pub use crate::serialization::*;
-    #[allow(ambiguous_glob_reexports)]
-    pub use crate::errors::*;
-    #[allow(ambiguous_glob_reexports)]
-    pub use crate::enterprise_models::*;
-    #[allow(ambiguous_glob_reexports)]
-    pub use crate::analytics::*;
-    #[allow(ambiguous_glob_reexports)]
-    pub use crate::realtime::*;
+    pub use crate::models::{
+        Product, ProductBuilder, ProductCategory, ProductStatus,
+        Warehouse, WarehouseBuilder, WarehouseType, WarehouseStatus,
+        StockTransaction, StockTransactionBuilder, TransactionType, TransactionStatus,
+    };
+    pub use crate::models::supplier::{Supplier, SupplierBuilder, SupplierType, SupplierStatus};
+    pub use crate::models::order::{Order, OrderBuilder, OrderType, OrderStatus};
+    
+    pub use crate::repository::{
+        Repository, SearchableRepository, RepositoryResult, RepositoryError,
+        ProductRepository, WarehouseRepository, SupplierRepository,
+        OrderRepository, StockTransactionRepository,
+        memory::MemoryRepositoryFactory,
+    };
+    
+    pub use chrono::{DateTime, Utc};
+    pub use rust_decimal::Decimal;
+    pub use serde::{Deserialize, Serialize};
+    pub use uuid::Uuid;
 }
