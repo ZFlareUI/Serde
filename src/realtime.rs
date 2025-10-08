@@ -5,7 +5,7 @@ use tokio::sync::{RwLock, broadcast, mpsc};
 use tokio::time::{Duration, Instant};
 use chrono::{DateTime, Utc};
 use uuid::Uuid;
-use rust_decimal::Decimal;
+// Decimal types imported through crate::models
 use dashmap::DashMap;
 // Stream processing imports removed - not used in current implementation
 use crate::models::{Product, Money, Transaction, InventorySnapshot};
@@ -749,7 +749,7 @@ pub struct SmtpConfig {
 #[derive(Debug)]
 pub enum SmsProvider {
     Twilio,
-    AWS_SNS,
+    AwsSns,
     Vonage,
     Custom { provider_name: String },
 }
@@ -916,8 +916,8 @@ impl RealTimeProcessor {
                 transaction_id: transaction.id,
                 product_id: transaction.product_id,
                 quantity: transaction.quantity,
-                value: transaction.unit_price.clone(),
-                transaction_type: transaction.transaction_type.clone(),
+                value: transaction.unit_cost.clone().unwrap_or(crate::models::Money::new(rust_decimal::Decimal::ZERO, crate::models::Currency::USD)),
+                transaction_type: format!("{:?}", transaction.transaction_type),
             },
             correlation_id: None,
             causation_id: None,
@@ -1147,12 +1147,16 @@ impl StateStore {
             });
 
         // Update quantities based on transaction type
-        match transaction.transaction_type.as_str() {
-            "purchase" | "adjustment_in" => {
-                product_state.total_quantity = product_state.total_quantity.saturating_add(transaction.quantity as u32);
+        match transaction.transaction_type {
+            crate::models::TransactionType::Receipt | crate::models::TransactionType::Adjustment => {
+                if transaction.quantity > 0 {
+                    product_state.total_quantity = product_state.total_quantity.saturating_add(transaction.quantity as u32);
+                } else {
+                    product_state.total_quantity = product_state.total_quantity.saturating_sub((-transaction.quantity) as u32);
+                }
             }
-            "sale" | "adjustment_out" => {
-                product_state.total_quantity = product_state.total_quantity.saturating_sub(transaction.quantity as u32);
+            crate::models::TransactionType::Shipment => {
+                product_state.total_quantity = product_state.total_quantity.saturating_sub(transaction.quantity.abs() as u32);
             }
             _ => {}
         }
@@ -1185,7 +1189,7 @@ impl StateStore {
             timestamp: Utc::now(),
             total_products: self.inventory_state.len() as u32,
             total_locations: self.location_state.len() as u32,
-            total_value: Money::new(Decimal::from(1000000), Currency::USD), // Simplified calculation
+            total_value: crate::models::Money::new(rust_decimal::Decimal::from(1000000), crate::models::Currency::USD), // Simplified calculation
             system_health: SystemHealth {
                 overall_health: HealthStatus::Healthy,
                 component_health: HashMap::new(),
@@ -1304,8 +1308,8 @@ impl NotificationService {
 
     pub async fn send_notification(
         &self,
-        template_id: &str,
-        variables: HashMap<String, String>,
+        _template_id: &str,
+        _variables: HashMap<String, String>,
         recipients: Vec<String>,
     ) -> InventoryResult<Uuid> {
         let notification_id = Uuid::new_v4();
