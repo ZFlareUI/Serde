@@ -2,10 +2,10 @@
 name = "inventory-serde"
 version = "0.1.0"
 edition = "2021"
-authors = ["Your Name <your.email@example.com>"]
+authors = ["Pratik Acharya <acharyapratik214@gmail.com>"]
 license = "MIT OR Apache-2.0"
 description = "Advanced inventory management library with comprehensive serde support"
-repository = "https://github.com/yourusername/inventory-serde"
+repository = "https://github.com/ZFlareUI/Serde"
 readme = "README.md"
 keywords = ["inventory", "serde", "serialization", "business-logic", "supply-chain"]
 categories = ["data-structures", "algorithms", "encoding"]
