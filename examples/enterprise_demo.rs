@@ -1,7 +1,9 @@
 use inventory_serde::prelude::*;
+use inventory_serde::analytics::ABCAnalysisResult;
 use chrono::Utc;
 use uuid::Uuid;
 use rust_decimal::Decimal;
+use rust_decimal::prelude::ToPrimitive;
 use std::collections::HashMap;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -136,10 +138,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("    Constraints Satisfied: {}", optimization_result.constraints_satisfied);
     println!("    Optimality Gap: {:.1}%", optimization_result.solution_quality.optimality_gap * 100.0);
     
-    // 6. REAL-TIME EVENT PROCESSING
-    println!("\n Real-time inventory event processing...");
+        // 6. REAL-TIME PROCESSING
+    println!("\n Real-time inventory processing...");
     
-    let rt_processor = RealTimeProcessor::new();
+    let _rt_processor = RealTimeProcessor::new();
     
     // Create inventory event
     let inventory_event = InventoryEvent {

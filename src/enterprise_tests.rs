@@ -125,7 +125,7 @@ fn test_forecast_models() {
 async fn test_network_optimizer() {
     let mut optimizer = NetworkOptimizer::new();
     
-    // Add some sample warehouse inventory
+    // Add warehouse inventory for testing
     let warehouse_id = Uuid::new_v4();
     let product_id = Uuid::new_v4();
     
@@ -180,7 +180,7 @@ async fn test_network_optimizer() {
 fn test_financial_optimizer_abc_analysis() {
     let mut products = HashMap::new();
     
-    // Create sample products with different profitability
+    // Create test products with different profitability
     let product_a = ProductProfitability {
         product_id: Uuid::new_v4(),
         revenue: Money::new(Decimal::from(100000), Currency::USD),

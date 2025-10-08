@@ -58,25 +58,47 @@ pub mod realtime;
 #[cfg(test)]
 pub mod tests;
 
+// Re-export all public items from modules
+// Note: Ambiguous glob re-exports are expected in comprehensive libraries
+#[allow(ambiguous_glob_reexports)]
 pub use models::*;
+#[allow(ambiguous_glob_reexports)]
 pub use algorithms::*;
+#[allow(ambiguous_glob_reexports)]
 pub use builders::*;
+#[allow(ambiguous_glob_reexports)]
 pub use pipelines::*;
+#[allow(ambiguous_glob_reexports)]
 pub use serialization::*;
+#[allow(ambiguous_glob_reexports)]
 pub use errors::*;
+#[allow(ambiguous_glob_reexports)]
 pub use enterprise_models::*;
+#[allow(ambiguous_glob_reexports)]
 pub use analytics::*;
+#[allow(ambiguous_glob_reexports)]
 pub use realtime::*;
 
 /// Convenience module for common imports
 pub mod prelude {
+    // Re-export all public items from modules
+    // Note: Ambiguous glob re-exports are expected in comprehensive libraries
+    #[allow(ambiguous_glob_reexports)]
     pub use crate::models::*;
+    #[allow(ambiguous_glob_reexports)]
     pub use crate::algorithms::*;
+    #[allow(ambiguous_glob_reexports)]
     pub use crate::builders::*;
+    #[allow(ambiguous_glob_reexports)]
     pub use crate::pipelines::*;
+    #[allow(ambiguous_glob_reexports)]
     pub use crate::serialization::*;
+    #[allow(ambiguous_glob_reexports)]
     pub use crate::errors::*;
+    #[allow(ambiguous_glob_reexports)]
     pub use crate::enterprise_models::*;
+    #[allow(ambiguous_glob_reexports)]
     pub use crate::analytics::*;
+    #[allow(ambiguous_glob_reexports)]
     pub use crate::realtime::*;
 }

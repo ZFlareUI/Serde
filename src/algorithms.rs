@@ -2,7 +2,6 @@ use std::collections::HashMap;
 use chrono::Datelike;
 use uuid::Uuid;
 use rust_decimal::Decimal;
-use serde::{Serialize, Deserialize};
 use crate::models::{Product, InventorySnapshot, Transaction, TransactionType, ProductClass};
 use crate::errors::{InventoryError, InventoryResult};
 
@@ -400,7 +399,9 @@ pub struct ABCAnalysisResult {
 #[derive(Debug, Clone)]
 struct ProductValue {
     pub product_id: Uuid,
+    #[allow(dead_code)]
     pub annual_demand: u32,
+    #[allow(dead_code)]
     pub unit_value: Decimal,
     pub annual_value: Decimal,
 }

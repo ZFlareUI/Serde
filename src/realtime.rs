@@ -1,16 +1,14 @@
 use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, VecDeque, BTreeMap};
-use std::sync::{Arc, Mutex};
-use tokio::sync::{RwLock, broadcast, mpsc};
+use std::sync::Arc;
+use tokio::sync::{RwLock, broadcast};
 use tokio::time::{Duration, Instant};
 use chrono::{DateTime, Utc};
 use uuid::Uuid;
 // Decimal types imported through crate::models
 use dashmap::DashMap;
 // Stream processing imports removed - not used in current implementation
-use crate::models::{Product, Money, Transaction, InventorySnapshot};
-use crate::enterprise_models::{InventoryPolicy, ForecastModel, CustomerSegment};
-use crate::analytics::{DecisionSupportSystem, AlertEngine, RecommendationEngine};
+use crate::models::{Money, Transaction};
 use crate::errors::{InventoryError, InventoryResult};
 
 /// Real-time inventory processing and event streaming

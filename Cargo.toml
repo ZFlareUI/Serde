@@ -1,14 +1,17 @@
 [package]
 name = "inventory-serde"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
 authors = ["Pratik Acharya <acharyapratik214@gmail.com>"]
 license = "MIT OR Apache-2.0"
-description = "Advanced inventory management library with comprehensive serde support"
+description = "Production-ready enterprise inventory management system with machine learning forecasting, multi-warehouse optimization, and comprehensive serialization support"
 repository = "https://github.com/ZFlareUI/Serde"
+documentation = "https://docs.rs/inventory-serde"
+homepage = "https://github.com/ZFlareUI/Serde"
 readme = "README.md"
-keywords = ["inventory", "serde", "serialization", "business-logic", "supply-chain"]
-categories = ["data-structures", "algorithms", "encoding"]
+keywords = ["inventory", "forecasting", "optimization", "enterprise", "supply-chain"]
+categories = ["algorithms", "science", "data-structures", "encoding", "mathematics"]
+exclude = ["target/", "*.log", ".DS_Store", "*.swp", "*.swo"]
 
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }

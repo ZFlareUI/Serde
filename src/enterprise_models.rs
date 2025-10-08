@@ -1,9 +1,9 @@
 use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, BTreeMap};
-use chrono::{DateTime, Utc, Duration};
+use chrono::{DateTime, Utc};
 use uuid::Uuid;
 use rust_decimal::Decimal;
-use crate::models::{Product, Money, Currency, Location};
+use crate::models::Money;
 use crate::errors::{InventoryError, InventoryResult};
 
 /// Advanced inventory policy with multiple replenishment strategies

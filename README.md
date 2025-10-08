@@ -25,6 +25,21 @@ A comprehensive, production-ready Rust library for enterprise inventory manageme
 - **Pattern Recognition**: Demand pattern analysis with seasonality detection
 - **Performance Metrics**: Inventory turnover, days inventory outstanding (DIO)
 
+##  Installation
+
+Add this to your `Cargo.toml`:
+
+```toml
+[dependencies]
+inventory-serde = "1.0.0"
+```
+
+Or use cargo:
+
+```bash
+cargo add inventory-serde
+```
+
 ##  Quick Start
 
 ### Basic Product Creation
@@ -242,7 +257,7 @@ Safety Stock = Z × σ × √L
 ```
 Where Z = service level factor, σ = demand standard deviation, L = lead time
 
-## 🏗️ Architecture
+##  Architecture
 
 ### Module Structure
 ```

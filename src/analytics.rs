@@ -1,14 +1,9 @@
 use serde::{Deserialize, Serialize};
-use std::collections::{HashMap, BTreeMap};
-use chrono::{DateTime, Utc, Duration, Datelike};
+use std::collections::HashMap;
+use chrono::{DateTime, Utc, Duration};
 use uuid::Uuid;
-use rust_decimal::Decimal;
 use nalgebra::{DMatrix, DVector};
-use ndarray::{Array1, Array2, Axis};
-use crate::models::{Product, Money, Currency, Transaction, InventorySnapshot};
-use crate::enterprise_models::{
-    ForecastModel, ForecastAccuracy, WarehouseNetwork, CustomerSegment, QualityControl
-};
+use crate::models::Money;
 use crate::errors::{InventoryError, InventoryResult};
 
 /// Advanced machine learning and predictive analytics
