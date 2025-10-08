@@ -473,7 +473,7 @@ pub enum SamplingMethod {
     RandomSampling { sample_size: u32 },
     SystematicSampling { interval: u32 },
     StratifiedSampling { strata: Vec<StrataDefinition> },
-    MIL_STD_105E { inspection_level: InspectionLevel },
+    MilStd105E { inspection_level: InspectionLevel },
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
