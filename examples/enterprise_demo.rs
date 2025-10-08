@@ -5,11 +5,11 @@ use rust_decimal::Decimal;
 use std::collections::HashMap;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    println!("🏭 Advanced Enterprise Inventory Management Library Demo");
+    println!(" Advanced Enterprise Inventory Management Library Demo");
     println!("===============================================\n");
 
     // 1. CREATE ENTERPRISE-GRADE PRODUCTS
-    println!("📦 Creating enterprise products with advanced features...");
+    println!(" Creating enterprise products with advanced features...");
     
     let product = ProductBuilder::new("SKU-ENT-001", "Industrial IoT Sensor")
         .description("Advanced temperature and humidity sensor with wireless connectivity")
@@ -26,7 +26,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("  Weight: {} grams", product.weight_grams);
     
     // 2. ADVANCED INVENTORY SYSTEM
-    println!("\n📊 Initializing advanced inventory system...");
+    println!("\nInitializing advanced inventory system...");
     
     let mut inventory = InventorySystem::new();
     inventory.add_product(product.clone())?;
@@ -70,7 +70,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("✓ Recorded transactions - Current stock levels updated");
     
     // 3. ADVANCED ANALYTICS & FORECASTING
-    println!("\n🧠 Running advanced ML-powered demand forecasting...");
+    println!("\n Running advanced ML-powered demand forecasting...");
     
     let mut ml_engine = MLPredictionEngine::new();
     
@@ -108,7 +108,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("  Next month forecast: {:.1} units", forecast);
     
     // 4. HOLT-WINTERS SEASONAL FORECASTING
-    println!("\n📈 Advanced Holt-Winters seasonal forecasting...");
+    println!("\n Advanced Holt-Winters seasonal forecasting...");
     
     let holt_winters = ForecastModel::HoltWinters {
         alpha: 0.3,  // Level smoothing
@@ -137,7 +137,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("    Optimality Gap: {:.1}%", optimization_result.solution_quality.optimality_gap * 100.0);
     
     // 6. REAL-TIME EVENT PROCESSING
-    println!("\n🔄 Real-time inventory event processing...");
+    println!("\n Real-time inventory event processing...");
     
     let rt_processor = RealTimeProcessor::new();
     
@@ -173,7 +173,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("    Timestamp: {}", inventory_event.timestamp);
     
     // 7. FINANCIAL OPTIMIZATION
-    println!("\n💰 Advanced financial optimization & costing...");
+    println!("\n Advanced financial optimization & costing...");
     
     let financial_optimizer = FinancialOptimizer {
         costing_methods: vec![
@@ -282,7 +282,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         },
     };
     
-    println!("✓ Financial optimization configured:");
+    println!(" Financial optimization configured:");
     println!("    VaR (95% confidence, 30 days): ${:.2}", 
              financial_optimizer.risk_metrics.value_at_risk.var_amount.amount.to_f64().unwrap_or(0.0));
     println!("    Inventory Turnover Risk: {:.1}%", 
@@ -294,7 +294,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
     
     // 8. MULTI-FORMAT SERIALIZATION
-    println!("\n💾 Enterprise-grade serialization...");
+    println!("\n Enterprise-grade serialization...");
     
     let json_data = serde_json::to_string_pretty(&product)?;
     let toml_data = toml::to_string(&product)?;
@@ -304,7 +304,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("    TOML size: {} bytes", toml_data.len());
     
     // 9. ADVANCED REPORTING
-    println!("\n📋 Generating enterprise reports...");
+    println!("\n Generating enterprise reports...");
     
     let reorder_recommendations = inventory.calculate_reorder_recommendations()?;
     println!("✓ Generated reorder recommendations: {} items", reorder_recommendations.len());
@@ -314,10 +314,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                  rec.product_id, rec.recommended_quantity, rec.urgency);
     }
     
-    println!("\n🎉 Advanced Enterprise Inventory Management Demo Complete!");
+    println!("\n Advanced Enterprise Inventory Management Demo Complete!");
     println!("===============================================");
     
-    println!("\n📊 Summary Statistics:");
+    println!("\n Summary Statistics:");
     println!("✓ Products managed: 1");
     println!("✓ Transactions processed: 2"); 
     println!("✓ ML models trained: 1");
