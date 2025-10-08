@@ -1,0 +1,2 @@
+&[Matrix<f64, Dyn, Const<1>, VecStorage<f64, Dyn, Const<1>>>]
+Vec<Matrix<f64, Dyn, Const<1>, VecStorage<f64, Dyn, Const<1>>>>

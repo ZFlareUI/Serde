@@ -1,0 +1,2 @@
+ABCClass: std::cmp::Eq
+HashMap<ABCClass, CategorySummary>
