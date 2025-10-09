@@ -26,21 +26,25 @@
 //!
 //! ```rust
 //! use inventory_serde::prelude::*;
-//! use chrono::Utc;
-//! use uuid::Uuid;
+//! use inventory_serde::models::{product::{Pricing, InventoryLevels}, common::Currency};
+//! use rust_decimal_macros::dec;
 //!
 //! // Create a product using the builder pattern
-//! let product = ProductBuilder::new("SKU-001", "Industrial Widget")
-//!     .description("High-quality widget for industrial applications")
-//!     .category("Manufacturing")
-//!     .unit_cost(rust_decimal::Decimal::new(2550, 2), Currency::USD)
-//!     .dimensions_cm(45.0, 30.0, 15.0)
-//!     .weight_grams(2500)
+//! let pricing = Pricing::new(dec!(25.50), dec!(39.99), "USD");
+//! let inventory = InventoryLevels::new(100, 10, 500, 50);
+//! 
+//! let product = ProductBuilder::new()
+//!     .sku("SKU-001".to_string())
+//!     .name("Industrial Widget".to_string())
+//!     .description("High-quality widget for industrial applications".to_string())
+//!     .category(ProductCategory::Industrial)
+//!     .pricing(pricing)
+//!     .inventory(inventory)
 //!     .build()?;
 //!
-//! // Serialize to different formats
+//! // Serialize to JSON
 //! let json = serde_json::to_string_pretty(&product)?;
-//! let toml = toml::to_string(&product)?;
+//! println!("Product: {}", product.name);
 //!
 //! # Ok::<(), Box<dyn std::error::Error>>(())
 //! ```

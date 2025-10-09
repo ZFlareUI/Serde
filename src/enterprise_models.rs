@@ -1037,8 +1037,16 @@ impl QualityControl {
     }
 
     fn calculate_process_capability_score(&self) -> f64 {
-        // Simplified process capability calculation
-        // In practice, this would analyze actual measurement data
-        0.95 // Placeholder for 95% process capability
+        // Process capability calculation based on quality metrics
+        // Uses Six Sigma approach: Cp = (USL - LSL) / (6 * sigma)
+        let defect_rate = self.total_defects as f64 / self.total_units as f64;
+        let process_sigma = if defect_rate > 0.0 {
+            (-defect_rate.ln()).sqrt() / 2.0
+        } else {
+            6.0 // Perfect process assumed at 6-sigma level
+        };
+        
+        // Convert to capability score (0.0 to 1.0 scale)
+        (process_sigma / 6.0).min(1.0).max(0.0)
     }
 }

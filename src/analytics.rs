@@ -1483,7 +1483,7 @@ impl NetworkOptimizer {
     }
 
     fn evaluate_objective_function(&self) -> InventoryResult<f64> {
-        // Simplified objective function evaluation
+        // Comprehensive objective function evaluation
         match self.optimization_config.objective_function.primary_objective {
             PrimaryObjective::MinimizeTotalCost => {
                 let inventory_cost = self.calculate_inventory_holding_cost()?;
@@ -1493,7 +1493,18 @@ impl NetworkOptimizer {
             PrimaryObjective::MaximizeServiceLevel => {
                 Ok(1.0 - self.calculate_service_level()?)
             }
-            _ => Ok(100.0), // Placeholder
+            PrimaryObjective::MinimizeTransportationCost => {
+                self.calculate_transportation_cost()
+            }
+            PrimaryObjective::MinimizeInventoryHoldingCost => {
+                self.calculate_inventory_holding_cost()
+            }
+            PrimaryObjective::MaximizeUtilization => {
+                Ok(1.0 - self.calculate_average_utilization()?)
+            }
+            PrimaryObjective::MinimizeLeadTime => {
+                Ok(self.calculate_average_lead_time()?)
+            }
         }
     }
 
@@ -1549,5 +1560,42 @@ impl NetworkOptimizer {
         }
 
         false
+    }
+
+    fn calculate_average_utilization(&self) -> InventoryResult<f64> {
+        // Calculate warehouse capacity utilization
+        if self.network_state.warehouse_inventories.is_empty() {
+            return Ok(0.0);
+        }
+
+        let total_utilization: f64 = self.network_state.warehouse_inventories
+            .values()
+            .map(|inv| {
+                // Assume utilization based on current vs max stock levels
+                let current_level = inv.current_stock_level;
+                let max_level = inv.maximum_stock_level;
+                if max_level > 0 {
+                    current_level as f64 / max_level as f64
+                } else {
+                    0.0
+                }
+            })
+            .sum();
+
+        Ok(total_utilization / self.network_state.warehouse_inventories.len() as f64)
+    }
+
+    fn calculate_average_lead_time(&self) -> InventoryResult<f64> {
+        // Calculate average lead time across transportation flows
+        if self.network_state.transportation_flows.is_empty() {
+            return Ok(0.0);
+        }
+
+        let total_lead_time: f64 = self.network_state.transportation_flows
+            .iter()
+            .map(|flow| flow.estimated_lead_time_days)
+            .sum();
+
+        Ok(total_lead_time / self.network_state.transportation_flows.len() as f64)
     }
 }

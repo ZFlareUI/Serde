@@ -410,6 +410,16 @@ impl OrderLineItem {
         self.recalculate_tax();
     }
 
+    /// Recalculate line total based on current quantity, price and discount
+    pub fn recalculate_totals(&mut self) {
+        use rust_decimal_macros::dec;
+        
+        let subtotal = self.quantity_ordered * self.unit_price.amount;
+        self.discount_amount.amount = subtotal * (self.discount_percentage / dec!(100));
+        self.line_total.amount = subtotal - self.discount_amount.amount;
+        self.recalculate_tax();
+    }
+
     /// Recalculate tax amount
     fn recalculate_tax(&mut self) {
         use rust_decimal_macros::dec;
@@ -673,7 +683,6 @@ impl Order {
 
     /// Calculate order totals
     pub fn calculate_totals(&mut self) {
-        use rust_decimal_macros::dec;
         
         // Calculate subtotal
         self.subtotal.amount = self.line_items.iter()
@@ -764,6 +773,9 @@ impl Order {
             return Err("Cannot submit order without line items".to_string());
         }
         
+        // Calculate totals before checking amount thresholds
+        self.calculate_totals();
+        
         self.status = OrderStatus::Submitted;
         
         // Set approval status based on order value or other criteria
@@ -771,7 +783,7 @@ impl Order {
             self.approval_status = ApprovalStatus::Pending;
         } else {
             self.approval_status = ApprovalStatus::NotRequired;
-            self.status = OrderStatus::Approved;
+            self.status = OrderStatus::Approved; // Auto-approve small orders
         }
         
         Ok(())
@@ -910,6 +922,7 @@ mod tests {
     fn test_large_order_requires_approval() {
         let mut large_line_item = create_test_line_item();
         large_line_item.unit_price = Money::new(dec!(1500.00), Currency::usd()); // $15,000 total
+        large_line_item.recalculate_totals(); // Recalculate after price change
         
         let mut order = Order::builder(
             "PO-003".to_string(),

@@ -124,7 +124,7 @@ impl Pricing {
         }
         
         let profit = self.selling_price - self.cost_price;
-        (profit / self.selling_price) * Decimal::from(100)
+        ((profit / self.selling_price) * Decimal::from(100)).round_dp(2)
     }
 
     /// Calculate markup percentage
@@ -134,7 +134,7 @@ impl Pricing {
         }
         
         let markup = self.selling_price - self.cost_price;
-        (markup / self.cost_price) * Decimal::from(100)
+        ((markup / self.cost_price) * Decimal::from(100)).round_dp(2)
     }
 }
 

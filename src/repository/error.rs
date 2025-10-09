@@ -3,7 +3,7 @@
 //! This module defines error types used throughout the repository layer
 //! with support for different database backends and error mapping.
 
-use std::fmt;
+// Error module - no unused imports
 use thiserror::Error;
 
 /// Repository operation result type

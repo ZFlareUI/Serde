@@ -1,10 +1,10 @@
 [package]
 name = "inventory-serde"
-version = "2.0.0"
+version = "0.3.0"
 edition = "2021"
 authors = ["Pratik Acharya <acharyapratik214@gmail.com>"]
 license = "MIT OR Apache-2.0"
-description = "Modular, production-grade async inventory management framework for Rust with ML forecasting, multi-database support, and REST API"
+description = "Production-ready inventory management library for Rust with serialization, business logic, and enterprise features"
 repository = "https://github.com/ZFlareUI/Serde"
 documentation = "https://docs.rs/inventory-serde"
 homepage = "https://github.com/ZFlareUI/Serde"
@@ -74,7 +74,7 @@ rust_decimal_macros = "1.30"
 url = { version = "2.5", features = ["serde"] }
 
 # Async runtime
-tokio = { version = "1.0", features = ["macros", "rt"], optional = true }
+tokio = { version = "1.0", features = ["macros", "rt", "rt-multi-thread"], optional = true }
 async-trait = "0.1"
 futures = "0.3"
 

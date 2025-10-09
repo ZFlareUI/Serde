@@ -17,7 +17,7 @@ use crate::models::{
 use crate::models::supplier::{Supplier, SupplierType, SupplierStatus};
 use crate::models::order::{Order, OrderType, OrderStatus, OrderPriority};
 
-use super::{Repository, SearchableRepository, RepositoryResult, SearchResult};
+use super::{SearchableRepository, RepositoryResult};
 
 /// Product repository trait
 #[async_trait]

@@ -275,13 +275,13 @@ impl SupplierPerformance {
             // Calculate on-time delivery percentage
             let on_time_count = self.total_orders - self.delivery_delays as u64;
             self.on_time_delivery_pct = Some(
-                (Decimal::from(on_time_count) / Decimal::from(self.total_orders)) * dec!(100)
+                ((Decimal::from(on_time_count) / Decimal::from(self.total_orders)) * dec!(100)).round_dp(2)
             );
             
             // Calculate quality acceptance percentage
             let quality_ok_count = self.total_orders - self.quality_issues as u64;
             self.quality_acceptance_pct = Some(
-                (Decimal::from(quality_ok_count) / Decimal::from(self.total_orders)) * dec!(100)
+                ((Decimal::from(quality_ok_count) / Decimal::from(self.total_orders)) * dec!(100)).round_dp(2)
             );
             
             // Calculate delivery rating (based on on-time percentage)
